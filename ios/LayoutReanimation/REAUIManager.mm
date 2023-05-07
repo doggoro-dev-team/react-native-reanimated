@@ -14,6 +14,9 @@
 #if __has_include(<RNScreens/RNSScreen.h>)
 #import <RNScreens/RNSScreen.h>
 #endif
+#if __has_include("AIRMapMarker.h")
+#import "AIRMapMarker.h"
+#endif
 
 @interface RCTUIManager (REA)
 - (void)_manageChildren:(NSNumber *)containerTag
@@ -125,6 +128,9 @@ std::weak_ptr<reanimated::Scheduler> _scheduler;
       if ([toRemoveChild isKindOfClass:[RCTModalHostView class]]
 #if __has_include(<RNScreens/RNSScreen.h>)
           || ([toRemoveChild isKindOfClass:[RNSScreenView class]])
+#endif
+#if __has_include("AIRMapMarker.h")
+          || ([toRemoveChild isKindOfClass:[AIRMapMarker class]])
 #endif
       ) {
         // we don't want layout animations when removing modals or Screens of native-stack since it brings buggy
